@@ -1,0 +1,52 @@
+{
+  "name": "Studio Analytics by NexusApp Studio — Premium Edition",
+  "short_name": "Studio Analytics",
+  "description": "Analiza tu Instagram profesionalmente. Detecta bots, analiza seguidores y exporta reportes.",
+  "start_url": "/nexus-ig-analyzer-app/",
+  "scope": "/nexus-ig-analyzer-app/",
+  "display": "standalone",
+  "background_color": "#050508",
+  "theme_color": "#0A0A10",
+  "orientation": "portrait-primary",
+  "id": "/nexus-ig-analyzer-app/",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect width='192' height='192' rx='40' fill='%230A0A10'/><rect x='4' y='4' width='184' height='184' rx='36' fill='none' stroke='%23C9A24D' stroke-width='2'/><text y='145' x='96' text-anchor='middle' font-size='130'>📊</text></svg>",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='100' fill='%230A0A10'/><rect x='8' y='8' width='496' height='496' rx='92' fill='none' stroke='%23C9A24D' stroke-width='4'/><text y='390' x='256' text-anchor='middle' font-size='350'>📊</text></svg>",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' fill='%230A0A10'/><text y='390' x='256' text-anchor='middle' font-size='350'>📊</text></svg>",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ],
+  "categories": ["social", "utilities", "productivity"],
+  "lang": "es",
+  "dir": "ltr",
+  "prefer_related_applications": false,
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "Nuevo Análisis",
+      "short_name": "Analizar",
+      "description": "Iniciar un nuevo análisis de Instagram",
+      "url": "/nexus-ig-analyzer-app/",
+      "icons": [
+        {
+          "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><text y='76' x='48' text-anchor='middle' font-size='76'>🔍</text></svg>",
+          "sizes": "96x96",
+          "type": "image/svg+xml"
+        }
+      ]
+    }
+  ]
+}

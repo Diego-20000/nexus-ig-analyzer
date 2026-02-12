@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>Studio Analytics by NexusApp Studio — Analiza tu Instagram</title>
+    <meta name="description" content="Analiza tu Instagram profesionalmente. Detecta bots, descubre quién no te sigue, obtén métricas de engagement y exporta reportes detallados. 100% privado y seguro.">
+    <meta name="author" content="NexusApp Studio">
+    <meta name="keywords" content="instagram analytics, bot detection, followers analysis, unfollow tracker, engagement metrics, instagram tool">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://diego-20000.github.io/nexus-ig-analyzer-app/">
+    
+    <!-- Theme & PWA -->
+    <meta name="theme-color" content="#0A0A10">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Studio Analytics">
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Content Security Policy -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.gstatic.com https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://www.googletagmanager.com https://apis.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://ui-avatars.com https://*.googleusercontent.com https://lh3.googleusercontent.com; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://*.firebaseapp.com https://ipapi.co https://api.exchangerate-api.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://www.google-analytics.com; frame-src https://accounts.google.com https://*.firebaseapp.com;">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Studio Analytics — Analiza tu Instagram con Inteligencia">
+    <meta property="og:description" content="Detecta bots, descubre quién no te sigue y exporta reportes profesionales. 100% privado.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://diego-20000.github.io/nexus-ig-analyzer-app/">
+    <meta property="og:image" content="https://diego-20000.github.io/nexus-ig-analyzer-app/og-image.png">
+    <meta property="og:locale" content="es_ES">
+    <meta property="og:site_name" content="Studio Analytics">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Studio Analytics — Analiza tu Instagram con Inteligencia">
+    <meta name="twitter:description" content="Detecta bots, descubre quién no te sigue y exporta reportes profesionales.">
+    <meta name="twitter:image" content="https://diego-20000.github.io/nexus-ig-analyzer-app/og-image.png">
+    
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>📊</text></svg>">
+    <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+    
+    <!-- Preconnect & Preload -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://www.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://firestore.googleapis.com" crossorigin>
+    <link rel="preload" href="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js" as="script" crossorigin>
+    <link rel="dns-prefetch" href="https://identitytoolkit.googleapis.com">
+    <link rel="dns-prefetch" href="https://securetoken.googleapis.com">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="/src/styles/main.css">
+    
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Studio Analytics",
+        "description": "Herramienta profesional de análisis de Instagram con detección de bots y métricas de engagement",
+        "url": "https://diego-20000.github.io/nexus-ig-analyzer-app/",
+        "applicationCategory": "SocialNetworkingApplication",
+        "operatingSystem": "Web",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "author": { "@type": "Organization", "name": "NexusApp Studio" }
+    }
+    </script>
+</head>
+<body>
+    <!-- Skip Navigation -->
+    <a href="#mainContent" class="skip-nav">Saltar al contenido principal</a>
+    
+    <!-- Splash Screen -->
+    <div id="splashScreen" class="splash-screen" role="status" aria-label="Cargando aplicación">
+        <div class="splash-content">
+            <div class="splash-logo">
+                <div class="splash-icon" aria-hidden="true">📊</div>
+                <h1 class="splash-title">Studio Analytics</h1>
+                <p class="splash-subtitle">by NexusApp Studio</p>
+            </div>
+            <div class="splash-loader" aria-hidden="true">
+                <div class="loader-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Offline Banner -->
+    <div id="offlineBanner" class="offline-banner" role="alert" aria-live="polite" style="display:none;">
+        <span aria-hidden="true">📡</span>
+        <span>Sin conexión a internet. Algunas funciones pueden no estar disponibles.</span>
+        <button class="btn-close-banner" id="closeOfflineBanner" type="button" aria-label="Cerrar aviso">&times;</button>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar" role="navigation" aria-label="Navegación principal">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-icon" aria-hidden="true">📊</span>
+                <span class="logo-text">Studio Analytics</span>
+            </div>
+            <div class="nav-actions">
+                <button class="btn-icon" id="themeToggle" type="button" aria-label="Cambiar tema" title="Cambiar tema">
+                    <span class="theme-sun" aria-hidden="true">☀️</span>
+                    <span class="theme-moon" aria-hidden="true">🌙</span>
+                </button>
+                <button class="btn-primary" id="loginBtn" type="button" style="display:none;" aria-label="Iniciar sesión con Google">Iniciar Sesión</button>
+                <div class="user-menu" id="userMenu" style="display:none;" role="group" aria-label="Menú de usuario">
+                    <img class="user-avatar" id="userAvatar" src="" alt="Avatar del usuario" loading="lazy">
+                    <span class="user-name" id="userName"></span>
+                    <button class="btn-icon" id="logoutBtn" type="button" aria-label="Cerrar sesión" title="Cerrar sesión">🚪</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="mainContent">
+        <!-- Hero Section -->
+        <section id="heroSection" class="hero-section" aria-labelledby="heroTitle">
+            <div class="hero-content">
+                <h1 id="heroTitle" class="hero-title">
+                    <span class="gradient-text">Analiza tu Instagram</span>
+                    con Inteligencia
+                </h1>
+                <p class="hero-subtitle">Descubre quién no te sigue, detecta bots y obtén métricas profesionales. Tu información, siempre privada.</p>
+                <div class="hero-features" role="list" aria-label="Características principales">
+                    <div class="feature-badge" role="listitem"><span aria-hidden="true">✓</span> 100% Privado</div>
+                    <div class="feature-badge" role="listitem"><span aria-hidden="true">✓</span> Detección de Bots</div>
+                    <div class="feature-badge" role="listitem"><span aria-hidden="true">✓</span> Export Pro</div>
+                </div>
+                <button class="btn-hero" id="heroLoginBtn" type="button" aria-label="Comenzar — Iniciar sesión con Google">
+                    <span>Comenzar</span>
+                    <span aria-hidden="true">→</span>
+                </button>
+                <p class="hero-note">Inicia sesión con Google para comenzar</p>
+            </div>
+        </section>
+
+        <!-- Dashboard Section -->
+        <section id="dashboardSection" class="dashboard-section" style="display:none;" aria-labelledby="dashUserName">
+            <div class="dashboard-container">
+                
+                <!-- Admin Dashboard -->
+                <div id="adminDashboard" class="admin-dashboard" style="display:none;" role="region" aria-label="Panel de administración">
+                    <div class="admin-header">
+                        <h2><span aria-hidden="true">👑</span> Panel de Administración</h2>
+                        <button class="btn-secondary" id="closeAdmin" type="button" aria-label="Cerrar panel de administración">Cerrar</button>
+                    </div>
+                    <div class="admin-stats" role="group" aria-label="Estadísticas de administración">
+                        <div class="admin-card"><h3>Usuarios Totales</h3><p id="adminTotalUsers" aria-live="polite">—</p></div>
+                        <div class="admin-card"><h3>Activos Hoy</h3><p id="adminActiveToday" aria-live="polite">—</p></div>
+                        <div class="admin-card"><h3>Análisis Realizados</h3><p id="adminTotalAnalyses" aria-live="polite">—</p></div>
+                    </div>
+                </div>
+
+                <!-- User Profile Header -->
+                <div class="dashboard-header">
+                    <div class="user-profile">
+                        <img class="profile-avatar" id="dashAvatar" src="" alt="Avatar del usuario" loading="lazy">
+                        <div class="profile-info">
+                            <h2 id="dashUserName">Usuario</h2>
+                            <p id="dashUserPlan" class="plan-badge">Free</p>
+                        </div>
+                    </div>
+                    <button class="btn-secondary" id="newAnalysisBtn" type="button" aria-label="Crear nuevo análisis">+ Nuevo Análisis</button>
+                </div>
+
+                <!-- Upload Section -->
+                <div class="upload-section" id="uploadSection" role="region" aria-label="Subir archivos para análisis">
+                    <div class="upload-card">
+                        <div class="upload-icon" aria-hidden="true">📤</div>
+                        <h3>Sube tus archivos JSON de Instagram</h3>
+                        <p class="upload-hint">Descarga tus datos desde Instagram &gt; Configuración &gt; Tu actividad &gt; Descargar información</p>
+                        <div class="upload-actions">
+                            <button class="btn-upload" id="followersBtn" type="button" aria-label="Subir archivo de seguidores">
+                                <span aria-hidden="true">📥</span> Seguidores
+                            </button>
+                            <button class="btn-upload" id="followingBtn" type="button" aria-label="Subir archivo de seguidos">
+                                <span aria-hidden="true">📥</span> Siguiendo
+                            </button>
+                        </div>
+                        <input type="file" id="followersInput" accept=".json" hidden aria-label="Seleccionar archivo de seguidores">
+                        <input type="file" id="followingInput" accept=".json" hidden aria-label="Seleccionar archivo de seguidos">
+                        <div class="upload-status" role="status" aria-live="polite">
+                            <div><span>Seguidores:</span><span id="followersStatus" aria-label="Estado: no cargado">❌</span></div>
+                            <div><span>Siguiendo:</span><span id="followingStatus" aria-label="Estado: no cargado">❌</span></div>
+                        </div>
+                        <button class="btn-primary" id="analyzeBtn" type="button" disabled aria-label="Analizar datos">Analizar</button>
+                        
+                        <!-- Loading indicator -->
+                        <div id="analysisLoader" class="analysis-loader" style="display:none;" role="status" aria-label="Analizando datos">
+                            <div class="loader-spinner"></div>
+                            <p>Analizando datos...</p>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar" id="analysisProgress"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Results Section -->
+                <div class="results-section" id="resultsSection" style="display:none;" role="region" aria-label="Resultados del análisis">
+                    <!-- Stats Grid -->
+                    <div class="stats-grid" role="group" aria-label="Estadísticas principales">
+                        <div class="stat-card">
+                            <div class="stat-icon" aria-hidden="true">👥</div>
+                            <div><span>Seguidores</span><span id="statFollowers" aria-live="polite">0</span></div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon" aria-hidden="true">➕</div>
+                            <div><span>Siguiendo</span><span id="statFollowing" aria-live="polite">0</span></div>
+                        </div>
+                        <div class="stat-card highlight">
+                            <div class="stat-icon" aria-hidden="true">❌</div>
+                            <div><span>No te siguen</span><span id="statNotFollowingBack" aria-live="polite">0</span></div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon" aria-hidden="true">🤝</div>
+                            <div><span>Mutuos</span><span id="statMutual" aria-live="polite">0</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Engagement Stats -->
+                    <div class="stats-grid" role="group" aria-label="Métricas de engagement">
+                        <div class="stat-card">
+                            <div class="stat-icon" aria-hidden="true">📊</div>
+                            <div><span>Ratio F/S</span><span id="statRatio" aria-live="polite">0</span></div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon" aria-hidden="true">🎯</div>
+                            <div><span>Engagement</span><span id="statEngagement" aria-live="polite">0%</span></div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon" aria-hidden="true">🤖</div>
+                            <div><span>Bots Detectados</span><span id="statBots" aria-live="polite">0</span></div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon" aria-hidden="true">💙</div>
+                            <div><span>Solo te siguen</span><span id="statOnlyFollowers" aria-live="polite">0</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Chart -->
+                    <div class="chart-container" role="img" aria-label="Gráfico de resultados">
+                        <canvas id="resultsChart" aria-label="Gráfico de distribución de seguidores"></canvas>
+                    </div>
+
+                    <!-- User Lists -->
+                    <div class="lists-container">
+                        <div class="tabs-header" role="tablist" aria-label="Categorías de usuarios">
+                            <button class="tab-btn active" data-tab="notFollowing" type="button" role="tab" aria-selected="true" aria-controls="panel-notFollowing">
+                                <span aria-hidden="true">❌</span> No siguen <span id="countNotFollowing" class="tab-count">0</span>
+                            </button>
+                            <button class="tab-btn" data-tab="mutual" type="button" role="tab" aria-selected="false" aria-controls="panel-mutual">
+                                <span aria-hidden="true">🤝</span> Mutuos <span id="countMutual" class="tab-count">0</span>
+                            </button>
+                            <button class="tab-btn" data-tab="onlyFollowers" type="button" role="tab" aria-selected="false" aria-controls="panel-onlyFollowers">
+                                <span aria-hidden="true">💙</span> Solo siguen <span id="countOnlyFollowers" class="tab-count">0</span>
+                            </button>
+                            <button class="tab-btn" data-tab="bots" type="button" role="tab" aria-selected="false" aria-controls="panel-bots">
+                                <span aria-hidden="true">🤖</span> Bots <span id="countBots" class="tab-count">0</span>
+                            </button>
+                        </div>
+                        <div class="list-controls">
+                            <input type="search" id="searchInput" placeholder="Buscar usuario..." aria-label="Buscar usuario en la lista">
+                            <button class="btn-secondary" id="exportBtn" type="button" aria-label="Exportar resultados"><span aria-hidden="true">📥</span> Exportar</button>
+                        </div>
+                        <div class="tab-content active" data-tab="notFollowing" id="panel-notFollowing" role="tabpanel"><div class="user-list" id="notFollowingList"></div></div>
+                        <div class="tab-content" data-tab="mutual" id="panel-mutual" role="tabpanel"><div class="user-list" id="mutualList"></div></div>
+                        <div class="tab-content" data-tab="onlyFollowers" id="panel-onlyFollowers" role="tabpanel"><div class="user-list" id="onlyFollowersList"></div></div>
+                        <div class="tab-content" data-tab="bots" id="panel-bots" role="tabpanel"><div class="user-list" id="botsList"></div></div>
+                    </div>
+                </div>
+
+                <!-- History Section -->
+                <div class="history-section" id="historySection" role="region" aria-label="Historial de análisis">
+                    <h3><span aria-hidden="true">📅</span> Historial de Análisis</h3>
+                    <div id="historyList"><p class="empty-state">Sin análisis previos</p></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer" role="contentinfo">
+        <div class="footer-content">
+            <p>&copy; 2024-2026 <strong>NexusApp Studio</strong>. Todos los derechos reservados.</p>
+            <p class="footer-version">Studio Analytics v3.0.0 — Premium Edition</p>
+        </div>
+    </footer>
+
+    <!-- Export Modal -->
+    <div class="modal" id="exportModal" role="dialog" aria-modal="true" aria-labelledby="exportModalTitle">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="exportModalTitle"><span aria-hidden="true">📥</span> Exportar Resultados</h3>
+                <button class="btn-close" id="closeExportModal" type="button" aria-label="Cerrar modal de exportación">&times;</button>
+            </div>
+            <div class="export-options" role="group" aria-label="Formatos de exportación">
+                <button class="export-option" data-format="pdf" type="button" aria-label="Exportar como PDF"><span aria-hidden="true">📄</span><span>PDF</span></button>
+                <button class="export-option" data-format="excel" type="button" aria-label="Exportar como Excel"><span aria-hidden="true">📊</span><span>Excel</span></button>
+                <button class="export-option" data-format="csv" type="button" aria-label="Exportar como CSV"><span aria-hidden="true">📋</span><span>CSV</span></button>
+                <button class="export-option" data-format="html" type="button" aria-label="Exportar como HTML"><span aria-hidden="true">🌐</span><span>HTML</span></button>
+                <button class="export-option" data-format="json" type="button" aria-label="Exportar como JSON"><span aria-hidden="true">{ }</span><span>JSON</span></button>
+                <button class="export-option" data-format="txt" type="button" aria-label="Exportar como texto"><span aria-hidden="true">📝</span><span>TXT</span></button>
+                <button class="export-option" data-format="markdown" type="button" aria-label="Exportar como Markdown"><span aria-hidden="true">📑</span><span>Markdown</span></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div class="modal" id="confirmModal" role="dialog" aria-modal="true" aria-labelledby="confirmModalTitle">
+        <div class="modal-content modal-sm">
+            <div class="modal-header">
+                <h3 id="confirmModalTitle">Confirmar</h3>
+                <button class="btn-close" id="closeConfirmModal" type="button" aria-label="Cerrar">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p id="confirmModalMessage">¿Estás seguro?</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" id="confirmCancel" type="button">Cancelar</button>
+                <button class="btn-danger" id="confirmAccept" type="button">Confirmar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cookie/Analytics Consent Banner -->
+    <div id="consentBanner" class="consent-banner" role="dialog" aria-label="Consentimiento de analytics" style="display:none;">
+        <div class="consent-content">
+            <p>Usamos analytics para mejorar tu experiencia. Tus datos de Instagram nunca se comparten ni se almacenan en nuestros servidores.</p>
+            <div class="consent-actions">
+                <button class="btn-secondary btn-sm" id="consentReject" type="button">Rechazar</button>
+                <button class="btn-primary btn-sm" id="consentAccept" type="button">Aceptar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toastContainer" class="toast-container" role="region" aria-label="Notificaciones" aria-live="polite"></div>
+
+    <!-- Scripts -->
+    <script defer src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js" crossorigin></script>
+    <script defer src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js" crossorigin></script>
+    <script defer src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js" crossorigin></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js" crossorigin></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js" crossorigin></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" crossorigin></script>
+    <script defer src="/src/config/app-config.js"></script>
+    <script defer src="/src/utils/logger.js"></script>
+    <script defer src="/src/utils/dom-helpers.js"></script>
+    <script defer src="/src/services/firebase/config.js"></script>
+    <script defer src="/src/services/api/nexus-api.js"></script>
+    <script defer src="/src/services/firebase/auth.js"></script>
+    <script defer src="/src/services/firebase/database.js"></script>
+    <script defer src="/src/utils/network-monitor.js"></script>
+    <script defer src="/src/app.js"></script>
+    <script defer src="/src/services/analytics/analyzer.js"></script>
+    <script defer src="/src/components/tutorial/Tutorial.js"></script>
+    <script defer src="/src/components/history/HistoryManager.js"></script>
+    <script>
+    if('serviceWorker' in navigator && location.protocol==='https:'){
+        window.addEventListener('load',()=>{
+            navigator.serviceWorker.register('/src/workers/service-worker.js').catch(e=>console.log('SW:',e));
+        });
+    }
+    </script>
+</body>
+</html>

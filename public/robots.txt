@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+
+Sitemap: https://diego-20000.github.io/nexus-ig-analyzer-app/sitemap.xml
