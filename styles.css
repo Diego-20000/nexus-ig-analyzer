@@ -139,6 +139,7 @@ body {
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    padding-bottom: 80px; /* Space for fixed footer */
 }
 
 ::selection {
@@ -1087,13 +1088,19 @@ body {
 
 /* ---- Footer ---- */
 .app-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
     border-top: 1px solid var(--border-color);
-    padding: 28px 24px;
+    padding: 20px 24px;
     text-align: center;
     color: var(--text-muted);
     font-size: 13px;
-    margin-top: 48px;
-    background: var(--bg-secondary);
+    background: rgba(10, 10, 16, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 .app-footer strong { color: var(--gold); font-weight: 600; }
 .footer-version { margin-top: 4px; font-size: 11px; opacity: 0.6; letter-spacing: 1px; }

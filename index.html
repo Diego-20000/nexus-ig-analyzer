@@ -104,6 +104,9 @@
                 <span class="logo-text">Studio Analytics</span>
             </div>
             <div class="nav-actions">
+                <button class="btn-icon" id="helpBtn" type="button" aria-label="Ver tutorial" title="Ver tutorial">
+                    <span aria-hidden="true">❓</span>
+                </button>
                 <button class="btn-icon" id="themeToggle" type="button" aria-label="Cambiar tema" title="Cambiar tema">
                     <span class="theme-sun" aria-hidden="true">☀️</span>
                     <span class="theme-moon" aria-hidden="true">🌙</span>
@@ -369,6 +372,18 @@
             navigator.serviceWorker.register('service-worker.js').catch(e=>console.log('SW:',e));
         });
     }
+    
+    // Help button to restart tutorial
+    document.addEventListener('DOMContentLoaded', () => {
+        const helpBtn = document.getElementById('helpBtn');
+        if (helpBtn) {
+            helpBtn.addEventListener('click', () => {
+                if (window.Tutorial) {
+                    window.Tutorial.restart();
+                }
+            });
+        }
+    });
     </script>
 </body>
 </html>
