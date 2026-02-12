@@ -35,12 +35,12 @@ const StudioConfig = (function() {
     // ========================================================================
 
     const FIREBASE = Object.freeze({
-        API_KEY: 'AIzaSyBN7GKNaMtQAfEv1IIMGLy4fXLE4ZMV-g0',
+        API_KEY: 'AIzaSyBN7GKNaMtQAfEvIiIMGLy4fXLE4ZMV-go',
         AUTH_DOMAIN: 'nexus-ig-analyzer.firebaseapp.com',
         PROJECT_ID: 'nexus-ig-analyzer',
         STORAGE_BUCKET: 'nexus-ig-analyzer.firebasestorage.app',
         MESSAGING_SENDER_ID: '118787217614',
-        APP_ID: '1:118787217614:web:1830dc491f01e734235897'
+        APP_ID: '1:118787217614:web:1830dc491f01e73423589f'
     });
 
     // ========================================================================
